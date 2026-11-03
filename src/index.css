@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Inter:wght@400..700&display=swap");
 
 * {
-  scroll-behavior: auto; /* Lenis handles smoothness, not native CSS */
+  scroll-behavior: auto;
 }
 
 html,
@@ -9,118 +9,28 @@ body {
   background-color: #faf6ef;
 }
 
+@keyframes float-slow {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(14px, -18px); }
+}
+@keyframes float-slower {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-18px, 14px); }
+}
+.animate-float-slow { animation: float-slow 9s ease-in-out infinite; }
+.animate-float-slower { animation: float-slower 12s ease-in-out infinite; }
 
-/* =========================================
-   FLOWRIX HERO — BACKGROUND SYSTEM
-========================================= */
-
-.flowrix-hero-canvas {
-  isolation: isolate;
-  background:
-    radial-gradient(
-      ellipse at 78% 35%,
-      rgba(232, 87, 45, 0.08),
-      transparent 48%
-    ),
-    #241F28;
+@keyframes shimmer-border {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+.animate-shimmer {
+  background-size: 300% 300%;
+  animation: shimmer-border 6s linear infinite;
 }
 
-/* Fine editorial grid */
-
-.flowrix-grid {
-  background-image:
-    linear-gradient(rgba(250, 246, 239, 0.07) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(250, 246, 239, 0.07) 1px, transparent 1px);
-
-  background-size: 65px 65px;
-
-  mask-image: linear-gradient(
-    to bottom,
-    black,
-    transparent 95%
-  );
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
-
-/* =========================================
-   GOOEY CTA
-========================================= */
-
-.flowrix-goo-layer {
-  filter: url("#flowrix-goo");
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  border-radius: 999px;
-  pointer-events: none;
-}
-
-.flowrix-goo-layer::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: #E8572D;
-  border-radius: 999px;
-  transition: background 0.4s ease;
-}
-
-.flowrix-goo-layer::after {
-  content: "";
-  position: absolute;
-  top: -12px;
-  right: 12%;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: #15635A;
-  transition:
-    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
-    background 0.4s ease;
-}
-
-.group:hover .flowrix-goo-layer::before {
-  background: #15635A;
-}
-
-.group:hover .flowrix-goo-layer::after {
-  transform: translate(-65px, 24px) scale(1.8);
-  background: #E8572D;
-}
-
-/* =========================================
-   SERVICES CARD
-========================================= */
-
-.flowrix-services-card {
-  transition:
-    transform 0.4s ease,
-    box-shadow 0.4s ease;
-}
-
-.flowrix-services-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 22px 55px rgba(36, 31, 40, 0.2);
-}
-
-/* =========================================
-   RESPONSIVE REFINEMENTS
-========================================= */
-
-@media (max-width: 767px) {
-  .flowrix-grid {
-    background-size: 42px 42px;
-  }
-
-  .flowrix-hero-canvas {
-    min-height: auto;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .flowrix-services-card,
-  .flowrix-goo-layer::before,
-  .flowrix-goo-layer::after {
-    transition: none !important;
-  }
-}
-
-
+.animate-spin-slow { animation: spin-slow 7s linear infinite; }
