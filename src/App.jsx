@@ -9,7 +9,7 @@ import Services from "./components/Services";
 import Works from "./components/Works";
 import Pricing from "./components/Pricing";
 import Testimonials from "./components/TestimonialGlobe";
-// import FAQ from "./components/FAQ";
+import FAQ from "./components/FAQ";
 // import Contact from "./components/Contact";
 
 function App() {
@@ -32,9 +32,9 @@ function App() {
       <Services />
       <Works />
       <Pricing />
+      <FAQ />
       <Testimonials />
-      {/*<FAQ />
-      <Contact /> */}
+      {/*<Contact /> */}
 
     </main>
   );
