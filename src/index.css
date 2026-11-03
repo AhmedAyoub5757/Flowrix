@@ -34,3 +34,22 @@ body {
   to { transform: rotate(360deg); }
 }
 .animate-spin-slow { animation: spin-slow 7s linear infinite; }
+
+
+:root {
+  --background: 250 246 239;       /* cream */
+  --foreground: 36 31 40;          /* ink */
+  --card: 241 235 224;             /* ivory */
+  --card-foreground: 36 31 40;     /* ink */
+  --muted: 241 235 224;            /* ivory */
+  --muted-foreground: 154 149 149; /* warm neutral gray */
+  --border: 224 220 215;           /* soft warm taupe */
+  --ring: 232 87 45;               /* terracotta */
+  --primary: 232 87 45;            /* terracotta */
+  --primary-foreground: 250 246 239; /* cream */
+  --chart-1: 232 87 45;  /* terracotta */
+  --chart-2: 21 99 90;   /* teal */
+  --chart-3: 201 160 74; /* gold */
+  --chart-4: 217 140 63; /* amber — used for the star rating */
+  --chart-5: 107 74 79;  /* muted wine, for a 5th distinct ring tone */
+}

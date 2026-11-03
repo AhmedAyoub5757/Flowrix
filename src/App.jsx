@@ -8,6 +8,7 @@ import About from "./components/About";
 import Services from "./components/Services";
 import Works from "./components/Works";
 import Pricing from "./components/Pricing";
+import Testimonials from "./components/TestimonialGlobe";
 // import FAQ from "./components/FAQ";
 // import Contact from "./components/Contact";
 
@@ -31,6 +32,7 @@ function App() {
       <Services />
       <Works />
       <Pricing />
+      <Testimonials />
       {/*<FAQ />
       <Contact /> */}
 
