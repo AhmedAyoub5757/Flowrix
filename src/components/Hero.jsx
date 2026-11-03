@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import Icon from "./Icon";
+import { EASE } from "./TextEffects";
 
 const SERVICES = [
   { title: "Branding Identity", icon: "palette" },
@@ -9,7 +10,6 @@ const SERVICES = [
   { title: "Content Consulting", icon: "message-square-text" },
 ];
 
-const EASE = [0.22, 1, 0.36, 1];
 const LABEL_TEXT = "Creative Agency";
 
 /* ---------------- Background ---------------- */
