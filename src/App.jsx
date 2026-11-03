@@ -5,7 +5,7 @@ import { initLenis } from "./lib/lenis";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
-// import Services from "./components/Services";
+import Services from "./components/Services";
 // import Works from "./components/Works";
 // import Pricing from "./components/Pricing";
 // import FAQ from "./components/FAQ";
@@ -28,8 +28,8 @@ function App() {
       <Navbar />
       <Hero />
       <About />
-      {/*<Services />
-      <Works />
+      <Services />
+      {/*<Works />
       <Pricing />
       <FAQ />
       <Contact /> */}
