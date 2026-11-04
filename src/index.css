@@ -9,6 +9,93 @@ body {
   background-color: #faf6ef;
 }
 
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #e8572d #f1ebe0;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1ebe0;
+}
+
+::-webkit-scrollbar-thumb {
+  border: 2px solid #f1ebe0;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #e8572d, #15635a);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #e8572d;
+}
+
+@media (pointer: fine) {
+  body,
+  a,
+  button,
+  input,
+  textarea,
+  select {
+    cursor: none !important;
+  }
+}
+
+.page-loader {
+  background: #241f28;
+}
+
+.page-loader__bar {
+  transform-origin: left center;
+  animation: loader-progress 1.1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes loader-progress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+.custom-cursor {
+  pointer-events: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  display: none;
+  height: 34px;
+  width: 34px;
+  border: 1px solid rgb(232 87 45 / 60%);
+  border-radius: 999px;
+  transform: translate(-50%, -50%);
+  transition: width 180ms ease, height 180ms ease, background-color 180ms ease;
+}
+
+.custom-cursor::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 4px;
+  width: 4px;
+  border-radius: 999px;
+  background: #e8572d;
+  transform: translate(-50%, -50%);
+}
+
+.custom-cursor.is-hovering {
+  height: 54px;
+  width: 54px;
+  background: rgb(232 87 45 / 10%);
+}
+
+@media (pointer: fine) {
+  .custom-cursor {
+    display: block;
+  }
+}
+
 @keyframes float-slow {
   0%, 100% { transform: translate(0, 0); }
   50% { transform: translate(14px, -18px); }

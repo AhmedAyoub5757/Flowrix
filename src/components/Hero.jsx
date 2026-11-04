@@ -93,32 +93,26 @@ function WorkMarquee({ className = "" }) {
 
 export default function Hero() {
   return (
-    <section id="home" className="relative overflow-hidden" data-aos="fade-in" data-aos-duration="1000">
+    <section id="home" className="relative overflow-hidden">
       <HeroBackground />
 
       <div
         className="relative mx-auto flex min-h-[calc(100svh-5rem)] max-w-7xl flex-col justify-center px-4 pb-20 pt-32 sm:px-6 md:min-h-[calc(100svh-6rem)] md:px-10 md:pb-24 md:pt-40 xl:min-h-[min(760px,calc(100svh-6rem))]"
-        data-aos="fade-up"
-        data-aos-delay="100"
-        data-aos-duration="900"
       >
         <WorkMarquee className="inset-y-0 right-5 hidden w-[37%] lg:block xl:right-12 xl:w-[34%]" />
 
-        <div className="relative z-10 lg:max-w-[60%]" data-aos="fade-up" data-aos-delay="200" data-aos-duration="900">
+        <div className="relative z-10 lg:max-w-[60%]">
           {/* Headline */}
           <h1
             className="font-display font-semibold leading-[0.94] tracking-[-0.055em] text-ink"
-            data-aos="fade-up"
-            data-aos-delay="300"
-            data-aos-duration="1000"
           >
-            <span className="mb-2 block pl-1 font-body text-[0.7rem] font-semibold uppercase tracking-[0.24em] text-ink/45 sm:text-xs" data-aos="fade-right" data-aos-delay="350">
+            <span className="mb-2 block pl-1 font-body text-[0.7rem] font-semibold uppercase tracking-[0.24em] text-ink/45 sm:text-xs">
               <BlurInText text="We build" />
             </span>
-            <span className="block text-[clamp(4.5rem,12vw,8.5rem)]" data-aos="fade-up" data-aos-delay="450">
+            <span className="block text-[clamp(4.5rem,12vw,8.5rem)]">
               <AnnotatedWord word="Brands" />
             </span>
-            <span className="mt-2 block pl-[0.08em] text-[clamp(2.8rem,7vw,5.5rem)]" data-aos="fade-up" data-aos-delay="550">
+            <span className="mt-2 block pl-[0.08em] text-[clamp(2.8rem,7vw,5.5rem)]">
               <BlurInText text="that move." delay={0.3} />
             </span>
           </h1>

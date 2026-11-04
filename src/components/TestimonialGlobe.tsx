@@ -247,7 +247,7 @@ export default function Testimonials() {
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.8, ease: EASE }}
-        className="relative mx-auto w-full max-w-[1680px] overflow-hidden rounded-[2rem] md:rounded-[3rem] border border-ink/10"
+        className="relative mx-auto w-full max-w-7xl overflow-hidden rounded-[2rem] border border-ink/10 md:rounded-[3rem]"
       >
         <TestimonialPanel
           items={TESTIMONIALS}

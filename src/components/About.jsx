@@ -6,14 +6,16 @@ import { AnnotatedWord, BlurInText, EASE, VaporText } from "./TextEffects";
 
 function CountUp({ value, suffix = "", duration = 1.6 }) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
   const [display, setDisplay] = useState(0);
 
   useEffect(() => {
     if (!isInView) return;
     let start;
     let raf;
+    let active = true;
     const step = (ts) => {
+      if (!active) return;
       if (!start) start = ts;
       const progress = Math.min((ts - start) / (duration * 1000), 1);
       const eased = 1 - Math.pow(1 - progress, 3);
@@ -22,7 +24,10 @@ function CountUp({ value, suffix = "", duration = 1.6 }) {
       else setDisplay(value);
     };
     raf = requestAnimationFrame(step);
-    return () => cancelAnimationFrame(raf);
+    return () => {
+      active = false;
+      cancelAnimationFrame(raf);
+    };
   }, [isInView, value, duration]);
 
   return (

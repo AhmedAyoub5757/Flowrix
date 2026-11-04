@@ -285,7 +285,7 @@ export default function Services() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.9, ease: EASE }}
-        className="relative mx-auto w-full max-w-[1680px] overflow-hidden rounded-[2rem] md:rounded-[3rem] bg-ink"
+        className="relative mx-auto w-full max-w-7xl overflow-hidden rounded-[2rem] bg-ink md:rounded-[3rem]"
       >
         <ServicesBackground />
 

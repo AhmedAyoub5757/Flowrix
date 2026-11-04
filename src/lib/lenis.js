@@ -7,11 +7,31 @@ export function initLenis() {
     smoothWheel: true,
   });
 
+  const handleAnchorClick = (event) => {
+    const link = event.target.closest("a[href^='#']");
+    if (!link || link.getAttribute("href") === "#") return;
+
+    const target = document.querySelector(link.getAttribute("href"));
+    if (!target) return;
+
+    event.preventDefault();
+    lenis.scrollTo(target, { offset: -24, duration: 1.2 });
+  };
+
+  document.addEventListener("click", handleAnchorClick);
+
+  let frame;
   function raf(time) {
     lenis.raf(time);
-    requestAnimationFrame(raf);
+    frame = requestAnimationFrame(raf);
   }
-  requestAnimationFrame(raf);
+  frame = requestAnimationFrame(raf);
 
-  return lenis;
+  return {
+    destroy() {
+      cancelAnimationFrame(frame);
+      document.removeEventListener("click", handleAnchorClick);
+      lenis.destroy();
+    },
+  };
 }

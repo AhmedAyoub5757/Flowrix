@@ -169,7 +169,7 @@ export default function FAQ() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.9, ease: EASE }}
-        className="relative mx-auto w-full max-w-[1680px]"
+        className="relative mx-auto w-full max-w-7xl"
       >
         <div className="relative z-10 px-6 sm:px-10 md:px-14 pt-14 md:pt-16 pb-16 md:pb-20">
           {/* Header */}

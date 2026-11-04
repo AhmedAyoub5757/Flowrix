@@ -5,13 +5,6 @@ import { BlurInText, VaporText, AnnotatedWord, EASE } from "./TextEffects";
 
 const BUDGETS = ["Just a question", "< $2k", "$2k – 5k", "$5k – 15k", "$15k+"];
 
-const SOCIALS = [
-  { icon: "instagram", href: "#" },
-  { icon: "twitter", href: "#" },
-  { icon: "linkedin", href: "#" },
-  { icon: "dribbble", href: "#" },
-];
-
 /* ---------------- Underline field ---------------- */
 
 function UnderlineField({ label, type = "text", value, onChange, required = false, textarea = false, rows = 3 }) {
@@ -221,7 +214,7 @@ export default function Contact() {
               <ContactRow icon="map-pin" label="San Francisco, CA" />
             </div>
 
-            <div className="flex items-center gap-3">
+            {/* <div className="flex items-center gap-3">
               {SOCIALS.map((s) => (
                 <motion.a
                   key={s.icon}
@@ -233,7 +226,7 @@ export default function Contact() {
                   <Icon name={s.icon} className="w-4 h-4" />
                 </motion.a>
               ))}
-            </div>
+            </div> */}
           </motion.div>
 
           {/* Right: form, no card, no background */}

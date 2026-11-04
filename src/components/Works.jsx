@@ -69,7 +69,7 @@ export default function Works() {
           parallax
           speed={700}
           slidesPerView="auto"
-          autoplay={{ delay: 4000, disableOnInteraction: false, pauseOnMouseEnter: true }}
+          autoplay={{ delay: 4000, disableOnInteraction: true, pauseOnMouseEnter: true }}
           coverflowEffect={{
             rotate: 32,
             stretch: 0,

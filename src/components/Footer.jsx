@@ -23,7 +23,7 @@ function Reveal({ children, delay = 0, className = "" }) {
     <motion.div
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
+      viewport={{ once: true, amount: 0.05, margin: "0px" }}
       transition={{ duration: 0.7, delay, ease: EASE }}
       className={className}
     >
@@ -114,19 +114,19 @@ export default function Footer() {
             <a href="#" className="text-xs text-cream/35 transition-colors hover:text-cream/65">
               Terms
             </a>
-            <button
-              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            <a
+              href="#home"
               className="flex h-9 w-9 items-center justify-center rounded-full border border-cream/15 text-cream/50 transition-colors hover:border-cream/40 hover:text-cream"
               aria-label="Back to top"
             >
               <Icon name="arrow-up" className="h-3.5 w-3.5" />
-            </button>
+            </a>
           </div>
         </Reveal>
 
         <Reveal delay={0.15} className="pt-8">
-          <a href="#home" className="group block overflow-hidden text-center leading-[0.78]">
-            <span className="font-display text-[20vw] font-semibold tracking-[-0.08em] text-cream/10 transition-colors duration-500 group-hover:text-cream/20 sm:text-[17vw] md:text-[15vw]">
+          <a href="#home" className="group block overflow-hidden whitespace-nowrap text-center leading-[0.78]">
+            <span className="font-display text-[18vw] font-semibold tracking-[-0.08em] text-cream/10 transition-colors duration-500 group-hover:text-cream/20 sm:text-[16vw] md:text-[14vw]">
               FLOWRIX
             </span>
           </a>
