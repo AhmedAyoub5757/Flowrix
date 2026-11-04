@@ -11,6 +11,7 @@ import Pricing from "./components/Pricing";
 import Testimonials from "./components/TestimonialGlobe";
 import FAQ from "./components/FAQ";
 import Contact from "./components/Contact";
+import Footer from "./components/Footer";
 
 function App() {
   useEffect(() => {
@@ -25,6 +26,7 @@ function App() {
   }, []);
 
   return (
+    <>
     <main className="overflow-hidden">
       <Navbar />
       <Hero />
@@ -36,6 +38,8 @@ function App() {
       <Testimonials />
       <Contact />
     </main>
+    <Footer />
+    </>
   );
 }
 

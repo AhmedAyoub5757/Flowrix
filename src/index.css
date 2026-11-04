@@ -53,3 +53,18 @@ body {
   --chart-4: 217 140 63; /* amber — used for the star rating */
   --chart-5: 107 74 79;  /* muted wine, for a 5th distinct ring tone */
 }
+
+@keyframes orbit-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes orbit-counter-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+.animate-orbit { animation: orbit-spin 50s linear infinite; }
+.animate-orbit-counter { animation: orbit-counter-spin 50s linear infinite; }
+.orbit-paused,
+.orbit-paused * {
+  animation-play-state: paused !important;
+}
