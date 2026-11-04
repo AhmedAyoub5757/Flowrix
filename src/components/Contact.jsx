@@ -1,9 +1,9 @@
-import { useEffect, useMemo, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { useMemo, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Icon from "./Icon";
 import { BlurInText, VaporText, AnnotatedWord, EASE } from "./TextEffects";
 
-const BUDGETS = ["< $2k", "$2k – 5k", "$5k – 15k", "$15k+"];
+const BUDGETS = ["Just a question", "< $2k", "$2k – 5k", "$5k – 15k", "$15k+"];
 
 const SOCIALS = [
   { icon: "instagram", href: "#" },
@@ -12,40 +12,36 @@ const SOCIALS = [
   { icon: "dribbble", href: "#" },
 ];
 
-/* ---------------- Form fields ---------------- */
+/* ---------------- Underline field ---------------- */
 
-function FloatingInput({ label, type = "text", value, onChange, required = true }) {
-  return (
-    <div className="relative">
-      <input
-        type={type}
-        required={required}
-        value={value}
-        onChange={onChange}
-        placeholder=" "
-        className="peer w-full border-0 border-b border-ink/20 bg-transparent px-0 pt-5 pb-3 text-sm text-ink outline-none transition-colors duration-300 focus:border-terracotta"
-      />
-      <label className="pointer-events-none absolute left-0 top-3.5 text-sm text-ink/40 transition-all duration-300 peer-focus:top-0 peer-focus:text-xs peer-focus:text-terracotta peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-xs">
-        {label}
-      </label>
-    </div>
-  );
-}
+function UnderlineField({ label, type = "text", value, onChange, required = false, textarea = false, rows = 3 }) {
+  const [focused, setFocused] = useState(false);
+  const Tag = textarea ? "textarea" : "input";
 
-function FloatingTextarea({ label, value, onChange }) {
   return (
-    <div className="relative">
-      <textarea
-        required
-        rows={4}
-        value={value}
-        onChange={onChange}
-        placeholder=" "
-        className="peer w-full resize-none border-0 border-b border-ink/20 bg-transparent px-0 pt-6 pb-3 text-sm text-ink outline-none transition-colors duration-300 focus:border-terracotta"
-      />
-      <label className="pointer-events-none absolute left-0 top-4 text-sm text-ink/40 transition-all duration-300 peer-focus:top-0 peer-focus:text-xs peer-focus:text-terracotta peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-xs">
-        {label}
+    <div>
+      <label className="mb-2 block text-xs font-medium uppercase tracking-wider text-ink/40">
+        {label} {!required && <span className="normal-case text-ink/30">(optional)</span>}
       </label>
+      <div className="relative">
+        <Tag
+          type={!textarea ? type : undefined}
+          required={required}
+          rows={textarea ? rows : undefined}
+          value={value}
+          onChange={onChange}
+          onFocus={() => setFocused(true)}
+          onBlur={() => setFocused(false)}
+          placeholder={textarea ? "What are you looking to build?" : ""}
+          className="w-full resize-none border-0 border-b border-ink/15 bg-transparent py-3 font-display text-xl sm:text-2xl text-ink placeholder:text-ink/25 outline-none"
+        />
+        <motion.span
+          initial={false}
+          animate={{ scaleX: focused ? 1 : 0 }}
+          transition={{ duration: 0.3, ease: EASE }}
+          className="absolute bottom-0 left-0 h-[2px] w-full origin-center bg-terracotta"
+        />
+      </div>
     </div>
   );
 }
@@ -53,27 +49,17 @@ function FloatingTextarea({ label, value, onChange }) {
 function BudgetChips({ value, onChange }) {
   return (
     <div>
-      <div className="mb-2 flex items-center gap-2">
-        <p className="text-xs font-medium uppercase tracking-wider text-ink/40">Project budget</p>
-        <span className="text-xs text-ink/35">(optional)</span>
-      </div>
+      <p className="mb-2 text-xs font-medium uppercase tracking-wider text-ink/40">
+        Project budget <span className="normal-case text-ink/30">(optional)</span>
+      </p>
       <div className="flex flex-wrap gap-2">
-        <button
-          type="button"
-          onClick={() => onChange("")}
-          className={`rounded-full border px-4 py-2 text-xs font-medium transition-all duration-300 ${
-            value === "" ? "border-ink/30 bg-ink text-cream" : "border-ink/15 text-ink/60 hover:border-ink/30"
-          }`}
-        >
-          Not sure yet
-        </button>
         {BUDGETS.map((b) => {
           const isActive = value === b;
           return (
             <button
               type="button"
               key={b}
-              onClick={() => onChange(b)}
+              onClick={() => onChange(isActive ? "" : b)}
               className={`rounded-full border px-4 py-2 text-xs font-medium transition-all duration-300 ${
                 isActive
                   ? "border-terracotta bg-terracotta text-cream"
@@ -193,38 +179,30 @@ function ContactRow({ icon, label, href }) {
 /* ---------------- Contact ---------------- */
 
 export default function Contact() {
-  const [status, setStatus] = useState("idle"); // idle | submitting | success
+  const [status, setStatus] = useState("idle");
   const [form, setForm] = useState({ name: "", email: "", budget: "", message: "" });
-  const submitTimer = useRef(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setStatus("submitting");
-    submitTimer.current = window.setTimeout(() => setStatus("success"), 1400);
+    setStatus("success");
   };
 
   const handleReset = () => {
-    if (submitTimer.current) window.clearTimeout(submitTimer.current);
     setForm({ name: "", email: "", budget: "", message: "" });
     setStatus("idle");
   };
 
-  useEffect(() => () => {
-    if (submitTimer.current) window.clearTimeout(submitTimer.current);
-  }, []);
-
   return (
-    <section id="contact" className="px-3 py-6 pb-28 md:pb-32">
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.9, ease: EASE }}
-        className="relative mx-auto w-full max-w-7xl"
-      >
-        <div className="relative z-10 grid grid-cols-1 gap-14 border-t border-ink/10 px-2 py-14 sm:px-4 md:grid-cols-[0.85fr_1.15fr] md:gap-20 md:py-20">
+    <section id="contact" className="px-4 py-24 md:py-32">
+      <div className="mx-auto max-w-7xl">
+        <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-14 lg:gap-20">
           {/* Left: heading + info */}
-          <div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.7, ease: EASE }}
+          >
             <BlurInText
               text="( Contact )"
               className="block text-xs font-semibold uppercase tracking-[0.2em] text-ink/40 mb-4"
@@ -256,35 +234,39 @@ export default function Contact() {
                 </motion.a>
               ))}
             </div>
-          </div>
+          </motion.div>
 
-          {/* Right: form card */}
+          {/* Right: form, no card, no background */}
           <motion.div
-            initial={{ opacity: 0, y: 30, scale: 0.97 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.7, ease: EASE }}
-            className="relative md:border-l md:border-ink/10 md:pl-10"
+            transition={{ duration: 0.7, delay: 0.1, ease: EASE }}
           >
             <motion.div layout>
-              {status === "success" ? (
-                <SuccessView name={form.name} onReset={handleReset} />
-              ) : (
-                <motion.form
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  onSubmit={handleSubmit}
-                  className="flex flex-col gap-6"
-                >
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <FloatingInput
+              <AnimatePresence mode="wait">
+                {status === "success" ? (
+                  <SuccessView key="success" name={form.name} onReset={handleReset} />
+                ) : (
+                  <motion.form
+                    key="form"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    onSubmit={handleSubmit}
+                    className="flex flex-col gap-7"
+                  >
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-7">
+                      <UnderlineField
                         label="Your name"
+                        required
                         value={form.name}
                         onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
                       />
-                      <FloatingInput
+                      <UnderlineField
                         label="Email address"
                         type="email"
+                        required
                         value={form.email}
                         onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
                       />
@@ -292,37 +274,31 @@ export default function Contact() {
 
                     <BudgetChips value={form.budget} onChange={(b) => setForm((f) => ({ ...f, budget: b }))} />
 
-                    <FloatingTextarea
-                      label="Tell us about your project"
+                    <UnderlineField
+                      label="Message"
+                      required
+                      textarea
+                      rows={3}
                       value={form.message}
                       onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
                     />
 
                     <motion.button
                       type="submit"
-                      disabled={status === "submitting"}
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
-                      className="group mt-2 flex items-center justify-center gap-2 self-start rounded-full bg-terracotta px-6 py-3.5 text-sm font-semibold text-cream shadow-lg shadow-terracotta/20 transition-[transform,box-shadow] disabled:opacity-70 hover:shadow-xl hover:shadow-terracotta/30"
+                      className="mt-2 flex w-fit items-center justify-center gap-2 rounded-full bg-terracotta px-7 py-3.5 text-sm font-semibold text-cream shadow-lg shadow-terracotta/30"
                     >
-                      {status === "submitting" ? (
-                        <>
-                          <Icon name="loader-2" className="w-4 h-4 animate-spin" />
-                          Sending...
-                        </>
-                      ) : (
-                        <>
-                          Send message
-                          <Icon name="send" className="w-4 h-4" />
-                        </>
-                      )}
+                      Send message
+                      <Icon name="send" className="w-4 h-4" />
                     </motion.button>
-                </motion.form>
-              )}
+                  </motion.form>
+                )}
+              </AnimatePresence>
             </motion.div>
           </motion.div>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }
