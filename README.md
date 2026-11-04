@@ -54,63 +54,6 @@ Run lint checks:
 npm run lint
 ```
 
-## Deploy to Vercel
-
-### Option 1: Deploy through the Vercel dashboard
-
-1. Push the project to GitHub, GitLab, or Bitbucket.
-2. Sign in at [vercel.com](https://vercel.com).
-3. Select **Add New Project**.
-4. Import the repository containing Flowrix.
-5. Confirm the project settings:
-   - **Framework Preset:** Vite
-   - **Build Command:** `npm run build`
-   - **Output Directory:** `dist`
-   - **Install Command:** `npm install`
-6. No environment variables are required for the current project.
-7. Select **Deploy**.
-8. Open the generated Vercel URL and test the navigation, mobile menu, carousel, contact form UI, and smooth scrolling.
-
-Vercel automatically creates preview deployments for pull requests and a production deployment for the configured production branch.
-
-### Option 2: Deploy with the Vercel CLI
-
-Install the CLI and authenticate:
-
-```bash
-npm install --global vercel
-vercel login
-```
-
-From the project root, create a preview deployment:
-
-```bash
-vercel
-```
-
-For the production deployment:
-
-```bash
-vercel --prod
-```
-
-When prompted, use these values:
-
-- Link to an existing project or create a new one.
-- Select the current project directory.
-- Keep the detected Vite settings.
-- Use `dist` as the output directory if Vercel asks.
-
-### Optional custom domain
-
-1. Open the Vercel project.
-2. Go to **Settings → Domains**.
-3. Add the domain.
-4. Apply the DNS records Vercel provides.
-5. Wait for DNS and SSL verification to complete.
-
-Update the canonical and social URLs in [index.html](./index.html) if the production domain differs from `https://flowrix.studio/`.
-
 ## Performance audit
 
 The latest Lighthouse audit results are:
