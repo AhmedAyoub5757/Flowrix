@@ -1,20 +1,22 @@
-import { useEffect } from "react";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion, useInView, useMotionValue, useSpring, useTransform } from "framer-motion";
 import Icon from "./Icon";
 import { BlurInText, AnnotatedWord, EASE } from "./TextEffects";
 
 const WORK_IMAGES = [
-  "/assets/work-1.jpg",
-  "/assets/work-2.jpg",
-  "/assets/work-3.jpg",
-  "/assets/work-4.jpg",
-  "/assets/work-5.jpg",
-  "/assets/work-6.jpg",
+  "/assets/work-1.webp",
+  "/assets/work-2.webp",
+  "/assets/work-3.webp",
+  "/assets/work-4.webp",
+  "/assets/work-5.webp",
+  "/assets/work-6.webp",
 ];
 
 /* ---------------- Background (minimal, recedes) ---------------- */
 
 function HeroBackground() {
+  const ref = useRef(null);
+  const isNearViewport = useInView(ref, { once: false, margin: "300px 0px" });
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
   const sx = useSpring(mx, { stiffness: 40, damping: 20 });
@@ -25,16 +27,17 @@ function HeroBackground() {
   );
 
   useEffect(() => {
+    if (!isNearViewport) return undefined;
     const handleMove = (e) => {
       mx.set((e.clientX / window.innerWidth - 0.5) * 2);
       my.set((e.clientY / window.innerHeight - 0.5) * 2);
     };
     window.addEventListener("mousemove", handleMove);
     return () => window.removeEventListener("mousemove", handleMove);
-  }, [mx, my]);
+  }, [isNearViewport, mx, my]);
 
   return (
-    <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+    <div ref={ref} className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
       <svg className="absolute inset-0 h-full w-full opacity-[0.035] mix-blend-multiply">
         <filter id="hero-grain">
           <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch" />
@@ -64,7 +67,16 @@ function ImageColumn({ images, direction = "up", duration = 36 }) {
             data-aos-duration="800"
             className="aspect-[3/4] w-full shrink-0 overflow-hidden rounded-2xl"
           >
-            <img src={src} alt="" className="h-full w-full object-cover" />
+            <img
+              src={src}
+              alt=""
+              width="900"
+              height="1200"
+              loading={i < 2 ? "eager" : "lazy"}
+              fetchPriority={i < 2 ? "high" : "low"}
+              decoding="async"
+              className="h-full w-full object-cover"
+            />
           </div>
         ))}
       </div>
@@ -73,8 +85,20 @@ function ImageColumn({ images, direction = "up", duration = 36 }) {
 }
 
 function WorkMarquee({ className = "" }) {
-  const colA = [WORK_IMAGES[0], WORK_IMAGES[2], WORK_IMAGES[4]];
-  const colB = [WORK_IMAGES[1], WORK_IMAGES[3], WORK_IMAGES[5]];
+  const [isHydrated, setIsHydrated] = useState(false);
+
+  useEffect(() => {
+    const hydrate = () => setIsHydrated(true);
+    if ("requestIdleCallback" in window) {
+      const idleId = window.requestIdleCallback(hydrate, { timeout: 1500 });
+      return () => window.cancelIdleCallback(idleId);
+    }
+    const timeoutId = window.setTimeout(hydrate, 1200);
+    return () => window.clearTimeout(timeoutId);
+  }, []);
+
+  const colA = isHydrated ? [WORK_IMAGES[0], WORK_IMAGES[2], WORK_IMAGES[4]] : [WORK_IMAGES[0]];
+  const colB = isHydrated ? [WORK_IMAGES[1], WORK_IMAGES[3], WORK_IMAGES[5]] : [WORK_IMAGES[1]];
 
   return (
     <div className={`pointer-events-none absolute z-0 ${className}`} data-aos="fade-left" data-aos-duration="1200">

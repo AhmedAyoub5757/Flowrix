@@ -7,17 +7,18 @@ const BUDGETS = ["Just a question", "< $2k", "$2k – 5k", "$5k – 15k", "$15k+
 
 /* ---------------- Underline field ---------------- */
 
-function UnderlineField({ label, type = "text", value, onChange, required = false, textarea = false, rows = 3 }) {
+function UnderlineField({ id, label, type = "text", value, onChange, required = false, textarea = false, rows = 3 }) {
   const [focused, setFocused] = useState(false);
   const Tag = textarea ? "textarea" : "input";
 
   return (
     <div>
-      <label className="mb-2 block text-xs font-medium uppercase tracking-wider text-ink/40">
-        {label} {!required && <span className="normal-case text-ink/30">(optional)</span>}
+      <label htmlFor={id} className="mb-2 block text-xs font-medium uppercase tracking-wider text-ink/60">
+        {label} {!required && <span className="normal-case text-ink/60">(optional)</span>}
       </label>
       <div className="relative">
         <Tag
+          id={id}
           type={!textarea ? type : undefined}
           required={required}
           rows={textarea ? rows : undefined}
@@ -26,7 +27,7 @@ function UnderlineField({ label, type = "text", value, onChange, required = fals
           onFocus={() => setFocused(true)}
           onBlur={() => setFocused(false)}
           placeholder={textarea ? "What are you looking to build?" : ""}
-          className="w-full resize-none border-0 border-b border-ink/15 bg-transparent py-3 font-display text-xl sm:text-2xl text-ink placeholder:text-ink/25 outline-none"
+          className="w-full resize-none border-0 border-b border-ink/15 bg-transparent py-3 font-display text-xl sm:text-2xl text-ink placeholder:text-ink/55 outline-none"
         />
         <motion.span
           initial={false}
@@ -41,11 +42,11 @@ function UnderlineField({ label, type = "text", value, onChange, required = fals
 
 function BudgetChips({ value, onChange }) {
   return (
-    <div>
-      <p className="mb-2 text-xs font-medium uppercase tracking-wider text-ink/40">
-        Project budget <span className="normal-case text-ink/30">(optional)</span>
+    <fieldset>
+      <p className="mb-2 text-xs font-medium uppercase tracking-wider text-ink/60">
+        Project budget <span className="normal-case text-ink/60">(optional)</span>
       </p>
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-2" role="group" aria-label="Project budget">
         {BUDGETS.map((b) => {
           const isActive = value === b;
           return (
@@ -64,7 +65,7 @@ function BudgetChips({ value, onChange }) {
           );
         })}
       </div>
-    </div>
+      </fieldset>
   );
 }
 
@@ -186,7 +187,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="px-4 py-24 md:py-32">
+    <section className="px-4 py-24 md:py-32">
       <div className="mx-auto max-w-7xl">
         <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-14 lg:gap-20">
           {/* Left: heading + info */}
@@ -198,7 +199,7 @@ export default function Contact() {
           >
             <BlurInText
               text="( Contact )"
-              className="block text-xs font-semibold uppercase tracking-[0.2em] text-ink/40 mb-4"
+              className="block text-xs font-semibold uppercase tracking-[0.2em] text-ink/60 mb-4"
             />
             <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-semibold leading-[1.05] text-ink mb-6">
               <BlurInText text="Let's build" /> <AnnotatedWord word="something" /> <BlurInText text="great." delay={0.4} />
@@ -251,12 +252,14 @@ export default function Contact() {
                   >
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-7">
                       <UnderlineField
+                        id="contact-name"
                         label="Your name"
                         required
                         value={form.name}
                         onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
                       />
                       <UnderlineField
+                        id="contact-email"
                         label="Email address"
                         type="email"
                         required
@@ -268,6 +271,7 @@ export default function Contact() {
                     <BudgetChips value={form.budget} onChange={(b) => setForm((f) => ({ ...f, budget: b }))} />
 
                     <UnderlineField
+                      id="contact-message"
                       label="Message"
                       required
                       textarea

@@ -51,7 +51,7 @@ function IndexItem({ item, index, isActive, onSelect }) {
 
       <span
         className={`font-display text-sm pt-1 transition-colors duration-300 ${
-          isActive ? "text-terracotta" : "text-ink/35"
+          isActive ? "text-terracotta" : "text-ink/60"
         }`}
       >
         0{index + 1}
@@ -121,7 +121,7 @@ function MobileAccordion() {
               className="flex w-full items-center justify-between gap-4 py-5 text-left"
             >
               <span className="flex items-start gap-3">
-                <span className={`font-display text-xs pt-1 ${isOpen ? "text-terracotta" : "text-ink/30"}`}>
+                <span className={`font-display text-xs pt-1 ${isOpen ? "text-terracotta" : "text-ink/60"}`}>
                   0{i + 1}
                 </span>
                 <span className={`font-display text-lg font-medium ${isOpen ? "text-ink" : "text-ink/60"}`}>
@@ -163,7 +163,7 @@ export default function FAQ() {
   const [active, setActive] = useState(0);
 
   return (
-    <section id="faq" className="px-3 py-6">
+    <section className="px-3 py-6">
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -177,7 +177,7 @@ export default function FAQ() {
             <div>
               <BlurInText
                 text="( FAQ )"
-                className="block text-xs font-semibold uppercase tracking-[0.2em] text-ink/40 mb-4"
+                className="block text-xs font-semibold uppercase tracking-[0.2em] text-ink/60 mb-4"
               />
               <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-semibold text-ink">
                 <BlurInText text="Questions, answered" />

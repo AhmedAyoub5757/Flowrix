@@ -6,7 +6,7 @@ import { BlurInText, VaporText, EASE } from "./TextEffects";
 const SERVICES = [
   {
     title: "Branding Identity",
-    image: "/assets/service-branding.jpg",
+    image: "/assets/service-branding.webp",
     accent: "terracotta",
     bullets: [
       { icon: "fingerprint", text: "Logo & Visual Identity" },
@@ -17,7 +17,7 @@ const SERVICES = [
   },
   {
     title: "Website Design",
-    image: "/assets/service-website.jpg",
+    image: "/assets/service-website.webp",
     accent: "teal",
     bullets: [
       { icon: "layout-template", text: "UX / UI Design" },
@@ -28,7 +28,7 @@ const SERVICES = [
   },
   {
     title: "Motion Design",
-    image: "/assets/service-motion.jpg",
+    image: "/assets/service-motion.webp",
     accent: "gold",
     bullets: [
       { icon: "film", text: "Brand Animation" },
@@ -39,7 +39,7 @@ const SERVICES = [
   },
   {
     title: "Content Consulting",
-    image: "/assets/service-content.jpg",
+    image: "/assets/service-content.webp",
     accent: "terracotta",
     bullets: [
       { icon: "message-square-text", text: "Content Strategy" },
@@ -168,6 +168,10 @@ function ServiceRow({ service, index, active, setActive }) {
                   <motion.img
                     src={service.image}
                     alt={service.title}
+                    width="1200"
+                    height="800"
+                    loading="lazy"
+                    decoding="async"
                     className="h-full w-full object-cover"
                     initial={{ scale: 1.08 }}
                     animate={{ scale: 1 }}
@@ -204,6 +208,7 @@ function ServiceRow({ service, index, active, setActive }) {
         <motion.a
           href="#contact"
           onClick={(e) => e.stopPropagation()}
+          aria-label={`Start a project for ${service.title}`}
           animate={{
             rotate: isActive ? 45 : 0,
             scale: isActive ? 1.1 : 1,
@@ -221,7 +226,7 @@ function ServiceRow({ service, index, active, setActive }) {
       {/* Mobile accordion header */}
       <div className="md:hidden relative flex items-center justify-between py-5">
         <div className="flex items-center gap-4">
-          <span className={`font-display text-xs ${isActive ? ACCENT_TEXT[service.accent] : "text-cream/30"}`}>
+          <span className={`font-display text-xs ${isActive ? ACCENT_TEXT[service.accent] : "text-cream/60"}`}>
             0{index + 1}
           </span>
           <span className="font-display text-lg font-medium text-cream">{service.title}</span>
@@ -244,6 +249,10 @@ function ServiceRow({ service, index, active, setActive }) {
               <motion.img
                 src={service.image}
                 alt={service.title}
+                width="1200"
+                height="800"
+                loading="lazy"
+                decoding="async"
                 initial={{ opacity: 0, scale: 1.04 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.65, ease: EASE }}
@@ -279,7 +288,7 @@ export default function Services() {
   const [active, setActive] = useState(null);
 
   return (
-    <section id="services" className="px-3 py-6">
+    <section className="px-3 py-6">
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -293,7 +302,7 @@ export default function Services() {
           <div>
             <BlurInText
               text="( Services )"
-              className="block text-xs font-semibold uppercase tracking-[0.2em] text-cream/40 mb-4"
+              className="block text-xs font-semibold uppercase tracking-[0.2em] text-cream/60 mb-4"
             />
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-semibold text-cream">
               <BlurInText text="What we're great at" />

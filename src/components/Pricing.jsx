@@ -129,14 +129,14 @@ function AddonToggle({ addon, isActive, onToggle, index }) {
           >
             {addon.title}
           </p>
-          <p className="text-xs text-cream/35 mt-0.5">{addon.desc}</p>
+          <p className="text-xs text-cream/60 mt-0.5">{addon.desc}</p>
         </div>
       </div>
 
       <div className="flex shrink-0 items-center gap-3">
         <span
           className={`text-sm font-medium transition-colors duration-300 ${
-            isActive ? "text-terracotta" : "text-cream/40"
+            isActive ? "text-terracotta" : "text-cream/60"
           }`}
         >
           +${addon.price}
@@ -173,13 +173,13 @@ function PricingCard({ selected }) {
       className="animate-shimmer rounded-[2rem] bg-gradient-to-br from-teal via-gold to-terracotta p-[1.5px] lg:sticky lg:top-28"
     >
       <div className="rounded-[1.95rem] bg-ink/95 backdrop-blur-xl p-7 sm:p-8">
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cream/40 mb-2">
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cream/60 mb-2">
           Your Package
         </p>
 
         <div className="mb-6 flex items-baseline">
           <AnimatedPrice value={total} className="font-display text-5xl sm:text-6xl font-semibold text-cream" />
-          <span className="ml-2 text-sm text-cream/40">one-time</span>
+          <span className="ml-2 text-sm text-cream/60">one-time</span>
         </div>
 
         <div className="h-px bg-cream/10 mb-5" />
@@ -227,7 +227,7 @@ function PricingCard({ selected }) {
 
         <a
           href="#contact"
-          className="mt-4 flex items-center justify-center gap-1.5 text-xs text-cream/40 transition-colors hover:text-cream/70"
+          className="mt-4 flex items-center justify-center gap-1.5 text-xs text-cream/60 transition-colors hover:text-cream/70"
         >
           Need something custom?
           <span className="underline underline-offset-2">Let's talk</span>
@@ -248,7 +248,7 @@ export default function Pricing() {
   };
 
   return (
-    <section id="pricing" className="px-3 py-6">
+    <section className="px-3 py-6">
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -264,7 +264,7 @@ export default function Pricing() {
             <div>
               <BlurInText
                 text="( Pricing )"
-                className="block text-xs font-semibold uppercase tracking-[0.2em] text-cream/40 mb-4"
+                className="block text-xs font-semibold uppercase tracking-[0.2em] text-cream/60 mb-4"
               />
               <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-semibold text-cream">
                 <BlurInText text="Build your package" />

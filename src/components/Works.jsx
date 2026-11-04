@@ -10,12 +10,12 @@ import Icon from "./Icon";
 import { BlurInText, EASE } from "./TextEffects";
 
 const PROJECTS = [
-  { title: "Lumen Skincare", category: "Branding Identity", image: "/assets/work-1.jpg" },
-  { title: "Northwind Capital", category: "Website Design", image: "/assets/work-2.jpg" },
-  { title: "Orbit Audio", category: "Motion Design", image: "/assets/work-3.jpg" },
-  { title: "Verdant Foods", category: "Branding Identity", image: "/assets/work-4.jpg" },
-  { title: "Pulse Fitness", category: "Website Design", image: "/assets/work-5.jpg" },
-  { title: "Solace Studio", category: "Content Consulting", image: "/assets/work-6.jpg" },
+  { title: "Lumen Skincare", category: "Branding Identity", image: "/assets/work-1.webp" },
+  { title: "Northwind Capital", category: "Website Design", image: "/assets/work-2.webp" },
+  { title: "Orbit Audio", category: "Motion Design", image: "/assets/work-3.webp" },
+  { title: "Verdant Foods", category: "Branding Identity", image: "/assets/work-4.webp" },
+  { title: "Pulse Fitness", category: "Website Design", image: "/assets/work-5.webp" },
+  { title: "Solace Studio", category: "Content Consulting", image: "/assets/work-6.webp" },
 ];
 
 export default function Works() {
@@ -24,14 +24,14 @@ export default function Works() {
   const total = PROJECTS.length;
 
   return (
-    <section id="works" className="px-4 py-24 md:py-32 overflow-hidden">
+    <section className="px-4 py-24 md:py-32 overflow-hidden">
       <div className="mx-auto max-w-7xl">
         {/* Header */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-end mb-16 md:mb-20">
           <div>
             <BlurInText
               text=" Works "
-              className="block text-xs font-semibold uppercase tracking-[0.2em] text-ink/40 mb-4"
+              className="block text-xs font-semibold uppercase tracking-[0.2em] text-ink/60 mb-4"
             />
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-semibold text-ink">
               <BlurInText text="Selected projects" />
@@ -104,6 +104,10 @@ export default function Works() {
                     <img
                       src={project.image}
                       alt={project.title}
+                      width="800"
+                      height="1000"
+                      loading="lazy"
+                      decoding="async"
                       className="h-full w-full object-cover object-center"
                     />
                   </div>

@@ -166,7 +166,7 @@ function TestimonialPanel({ items, eyebrow, heading, caption, autoplay, interval
 
       <div className="relative z-10 grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
         <div>
-          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-cream/40">
+          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-cream/60">
             {eyebrow}
           </p>
           <h2 className="max-w-xl font-display text-3xl font-semibold leading-tight sm:text-4xl md:text-5xl">
@@ -210,7 +210,7 @@ function TestimonialPanel({ items, eyebrow, heading, caption, autoplay, interval
           <blockquote className="font-display text-2xl leading-snug text-cream/90 sm:text-3xl">
             “{active.quote}”
           </blockquote>
-          <div className="mt-8 flex items-center justify-between text-xs uppercase tracking-[0.15em] text-cream/40">
+          <div className="mt-8 flex items-center justify-between text-xs uppercase tracking-[0.15em] text-cream/60">
             <span>{active.city}, {active.country}</span>
             <span>{String(activeIndex + 1).padStart(2, "0")} / {String(items.length).padStart(2, "0")}</span>
           </div>

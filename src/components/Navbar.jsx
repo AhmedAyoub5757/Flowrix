@@ -16,10 +16,10 @@ import {
 const NAV_LINKS = ["Home", "About", "Services", "Works"];
 
 const SERVICES = [
-  { title: "Branding Identity", icon: Palette, desc: "Visual systems that stick.", tone: "terracotta", image: "/assets/service-branding.jpg" },
-  { title: "Website Design", icon: LayoutTemplate, desc: "Interfaces that convert.", tone: "teal", image: "/assets/service-website.jpg" },
-  { title: "Motion Design", icon: Film, desc: "Movement with meaning.", tone: "gold", image: "/assets/service-motion.jpg" },
-  { title: "Content Consulting", icon: MessageSquareText, desc: "Stories that land.", tone: "wine", image: "/assets/service-content.jpg" },
+  { title: "Branding Identity", icon: Palette, desc: "Visual systems that stick.", tone: "terracotta", image: "/assets/service-branding.webp" },
+  { title: "Website Design", icon: LayoutTemplate, desc: "Interfaces that convert.", tone: "teal", image: "/assets/service-website.webp" },
+  { title: "Motion Design", icon: Film, desc: "Movement with meaning.", tone: "gold", image: "/assets/service-motion.webp" },
+  { title: "Content Consulting", icon: MessageSquareText, desc: "Stories that land.", tone: "wine", image: "/assets/service-content.webp" },
 ];
 
 function MagneticButton({ children = "Let's Talk" }) {
@@ -222,7 +222,7 @@ export default function Navbar() {
           className="hidden items-center gap-1 rounded-full border border-ink/10 px-3 py-2 backdrop-blur-xl md:flex"
         >
           <a href="#home" className="flex items-center px-1 pr-4" aria-label="Flowrix home">
-            <img src="/assets/logo.jpg" alt="Flowrix" className="h-8 w-8 rounded-full object-cover" />
+            <img src="/assets/logo.webp" alt="Flowrix" width="64" height="64" decoding="async" className="h-8 w-8 rounded-full object-cover" />
           </a>
 
           {NAV_LINKS.map((link) => {
@@ -294,7 +294,7 @@ export default function Navbar() {
         className="fixed inset-x-0 top-0 z-50 flex items-center justify-between border-b border-ink/10 bg-cream/85 px-5 py-4 backdrop-blur-xl md:hidden"
       >
         <a href="#home" onClick={closeMobile} aria-label="Flowrix home">
-          <img src="/assets/logo.jpg" alt="Flowrix" className="h-8 w-8 rounded-full object-cover" />
+          <img src="/assets/logo.webp" alt="Flowrix" width="64" height="64" decoding="async" className="h-8 w-8 rounded-full object-cover" />
         </a>
         <div className="flex items-center gap-3">
           <a href="#contact" onClick={closeMobile} className="rounded-full bg-terracotta px-4 py-2 text-xs font-semibold text-cream">

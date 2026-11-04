@@ -1,9 +1,74 @@
-import { useEffect } from "react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  ArrowUp,
+  ArrowUpRight,
+  BookOpen,
+  Check,
+  ChevronDown,
+  CircleHelp,
+  Clapperboard,
+  Compass,
+  Film,
+  Fingerprint,
+  Gauge,
+  Layers,
+  LayoutTemplate,
+  Mail,
+  MapPin,
+  MessageCircleQuestion,
+  MessageSquareText,
+  Mic,
+  MousePointerClick,
+  Palette,
+  PenLine,
+  Phone,
+  Plus,
+  RotateCcw,
+  Search,
+  Send,
+  Share2,
+  Smartphone,
+  Sparkles,
+  Zap,
+} from "lucide-react";
+
+const ICONS = {
+  "arrow-left": ArrowLeft,
+  "arrow-right": ArrowRight,
+  "arrow-up": ArrowUp,
+  "arrow-up-right": ArrowUpRight,
+  "book-open": BookOpen,
+  check: Check,
+  "chevron-down": ChevronDown,
+  "circle-help": CircleHelp,
+  clapperboard: Clapperboard,
+  compass: Compass,
+  film: Film,
+  fingerprint: Fingerprint,
+  gauge: Gauge,
+  layers: Layers,
+  "layout-template": LayoutTemplate,
+  mail: Mail,
+  "map-pin": MapPin,
+  "message-circle-question": MessageCircleQuestion,
+  "message-square-text": MessageSquareText,
+  mic: Mic,
+  "mouse-pointer-click": MousePointerClick,
+  palette: Palette,
+  "pen-line": PenLine,
+  phone: Phone,
+  plus: Plus,
+  "rotate-ccw": RotateCcw,
+  search: Search,
+  send: Send,
+  "share-2": Share2,
+  smartphone: Smartphone,
+  sparkles: Sparkles,
+  zap: Zap,
+};
 
 export default function Icon({ name, className = "", ...props }) {
-  useEffect(() => {
-    if (window.lucide) window.lucide.createIcons();
-  });
-
-  return <i data-lucide={name} className={className} {...props}></i>;
+  const IconComponent = ICONS[name] || CircleHelp;
+  return <IconComponent className={className} aria-hidden="true" {...props} />;
 }

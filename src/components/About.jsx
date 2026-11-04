@@ -139,7 +139,6 @@ function StatCard({ stat, index }) {
 export default function About() {
   return (
     <motion.section
-      id="about"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-120px" }}
@@ -163,7 +162,7 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.6, ease: EASE }}
-              className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-ink/40"
+              className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-ink/60"
             >
               ( About Us )
             </motion.p>
