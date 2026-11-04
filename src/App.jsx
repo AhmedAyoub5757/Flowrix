@@ -10,7 +10,7 @@ import Works from "./components/Works";
 import Pricing from "./components/Pricing";
 import Testimonials from "./components/TestimonialGlobe";
 import FAQ from "./components/FAQ";
-// import Contact from "./components/Contact";
+import Contact from "./components/Contact";
 
 function App() {
   useEffect(() => {
@@ -34,8 +34,7 @@ function App() {
       <Pricing />
       <FAQ />
       <Testimonials />
-      {/*<Contact /> */}
-
+      <Contact />
     </main>
   );
 }
