@@ -85,7 +85,7 @@ function StatCard({ stat, index }) {
   const accent = ACCENTS[stat.accent];
 
   const number = (
-    <span className={`font-display text-5xl sm:text-6xl font-semibold ${accent.text}`}>
+    <span className={`font-display text-5xl font-semibold sm:text-6xl ${accent.text}`}>
       <CountUp value={stat.value} suffix={stat.suffix} />
     </span>
   );
@@ -93,7 +93,7 @@ function StatCard({ stat, index }) {
     <BlurInText
       text={stat.label}
       delay={0.4 + index * 0.1}
-      className="block max-w-[9rem] text-right text-sm font-medium text-ink/60 ml-auto"
+      className="ml-auto block max-w-[9rem] text-right text-sm font-medium text-ink/60"
     />
   );
 
@@ -185,7 +185,7 @@ export default function About() {
 
         {/* Stat cards */}
         <motion.div
-          className="mt-20 md:mt-28 flex flex-wrap justify-center gap-6 md:gap-8"
+          className="mt-20 flex flex-wrap justify-center gap-6 md:mt-28 md:gap-8"
           variants={{
             hidden: { opacity: 0, y: 24 },
             visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: EASE } },

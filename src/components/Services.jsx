@@ -149,28 +149,30 @@ function ServiceRow({ service, index, active, setActive }) {
         </motion.span>
 
         <div className="relative h-24 flex items-center">
-          <AnimatePresence>
+          <AnimatePresence mode="wait">
             {isActive && (
               <motion.div
-                initial={{ opacity: 0, x: -18, filter: "blur(5px)" }}
+                initial={{ opacity: 0, x: -10, filter: "blur(3px)" }}
                 animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-                exit={{ opacity: 0, x: -18, filter: "blur(5px)" }}
-                transition={{ duration: 0.45, ease: EASE }}
+                exit={{ opacity: 0, x: 10, filter: "blur(3px)" }}
+                transition={{ duration: 0.65, ease: EASE }}
                 className="flex items-center gap-6"
               >
                 <motion.div
-                  initial={{ opacity: 0, scale: 0.8, rotate: -4, clipPath: "inset(0 100% 0 0)" }}
-                  animate={{ opacity: 1, scale: 1, rotate: 0, clipPath: "inset(0 0% 0 0)" }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.55, ease: EASE }}
+                  initial={{ opacity: 0, scale: 0.94, rotate: -2 }}
+                  animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                  exit={{ opacity: 0, scale: 0.96, rotate: 2 }}
+                  transition={{ duration: 0.75, ease: EASE }}
                   className="h-32 w-64 shrink-0 overflow-hidden rounded-2xl shadow-lg shadow-black/20"
                 >
                   <motion.img
                     src={service.image}
                     alt={service.title}
                     className="h-full w-full object-cover"
+                    initial={{ scale: 1.08 }}
+                    animate={{ scale: 1 }}
                     whileHover={{ scale: 1.08 }}
-                    transition={{ duration: 0.5 }}
+                    transition={{ duration: 0.8, ease: EASE }}
                   />
                 </motion.div>
 
@@ -239,7 +241,14 @@ function ServiceRow({ service, index, active, setActive }) {
             className="md:hidden overflow-hidden"
           >
             <div className="pb-6 flex flex-col gap-4">
-              <img src={service.image} alt={service.title} className="h-36 w-full rounded-xl object-cover" />
+              <motion.img
+                src={service.image}
+                alt={service.title}
+                initial={{ opacity: 0, scale: 1.04 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.65, ease: EASE }}
+                className="h-36 w-full rounded-xl object-cover"
+              />
               <ul className="flex flex-col gap-2">
                 {service.bullets.map((b, bi) => (
                   <motion.li
